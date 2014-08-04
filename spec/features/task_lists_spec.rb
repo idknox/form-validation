@@ -4,9 +4,6 @@ require 'capybara/rails'
 feature 'Task lists' do
 
   scenario 'User can view task lists' do
-    create_user email: "user@example.com"
-    TaskList.create!(name: "Work List")
-    TaskList.create!(name: "Household Chores")
 
     visit signin_path
     click_on "Login"
@@ -17,6 +14,19 @@ feature 'Task lists' do
     expect(page).to have_content("Household Chores")
   end
 
+  scenario "user can add tasks" do
+    visit signin_path
+    click_on "Login"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+
+    click_on "Add Task List"
+    fill_in "Name", :with => "Whatever"
+    click_on "Create Task List"
+    expect(page).to have_content "Task List was created successfully!"
+    expect(page).to have_content "Whatever", "My Lists"
+  end
 end
 
 feature "About Page" do
@@ -28,4 +38,6 @@ feature "About Page" do
   elit. Suspendisse potenti. Maecenas consequat magna eu urna rhoncus tristique. Proin hendrerit in quam quis imperdiet.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et hendrerit est."
   end
+
+
 end

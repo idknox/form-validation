@@ -1,5 +1,10 @@
 <h1>My Lists</h1>
-
+<a href="/task_lists/new">Add Task List</a>
+<% if flash[:notice] %>
+  <div class="errors">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 <% @task_lists.each do |task_list| %>
 
   <section class="task-list">

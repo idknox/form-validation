@@ -1,4 +1,4 @@
-/*
+ /*
  *= require_tree .
  *= require_self
  */
@@ -83,4 +83,8 @@ main {
   h1 {
     font-size: 110%;
   }
+}
+
+.about h1 {
+  text-align: center;
 }
