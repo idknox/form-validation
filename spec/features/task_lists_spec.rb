@@ -27,8 +27,18 @@ feature 'Task lists' do
     expect(page).to have_content "Task List was created successfully!"
     expect(page).to have_content "Whatever", "My Lists"
   end
-end
 
+  scenario "doesn't allow task with blank name to be created" do
+    visit "/"
+    fill_in "Email", with: "user@example.com"
+    fill_in "Password", with: "password"
+    click_on "Login"
+    click_on "Add Task List"
+    click_on "Create Task List"
+    expect(page).to have_content "Your task list could not be created"
+    expect(page).to have_content "Add a task list"
+  end
+end
 feature "About Page" do
   scenario "User can view About Page" do
     visit "/"
@@ -38,6 +48,4 @@ feature "About Page" do
   elit. Suspendisse potenti. Maecenas consequat magna eu urna rhoncus tristique. Proin hendrerit in quam quis imperdiet.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et hendrerit est."
   end
-
-
 end
