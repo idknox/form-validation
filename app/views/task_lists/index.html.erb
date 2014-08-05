@@ -1,16 +1,15 @@
 <h1>My Lists</h1>
-<a href="task_lists/new">Add Task List</a>
+<%= link_to "Add Task List", new_task_list_path %>
 <% if flash[:notice] %>
   <div class="errors">
     <%= flash[:notice] %>
   </div>
 <% end %>
 <% @task_lists.each do |task_list| %>
-
   <section class="task-list">
     <h1><%= task_list.name %></h1>
-    <a href="/task_lists/<%= task_list.id %>/edit" id="<%= task_list.id %>">Edit</a>
-    <a href="/task_lists/<%= task_list.id %>/tasks/new">Add Task</a>
+    <%= link_to "Edit", edit_task_list_path(task_list.id) %>
+    <%= link_to "Add Task", new_task_list_task_path(task_list.id) %>
     <% @tasks.each do |task| %>
       <% if task.task_list_id == task_list.id %>
         <h3><%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %></h3>
