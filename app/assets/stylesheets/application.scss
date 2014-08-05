@@ -1,7 +1,7 @@
- /*
- *= require_tree .
- *= require_self
- */
+/*
+*= require_tree .
+*= require_self
+*/
 
 .container {
   width: 960px;
@@ -89,6 +89,91 @@ main {
   text-align: center;
 }
 
-#1 {
+.task_list {
   display: inline-block;
+  text-decoration: none;
+}
+
+.task_list:visited {
+  color: #000;
+}
+
+.add {
+  display: inline-block;
+  font-size: 15px;
+  margin-left: 10px;
+}
+
+.flash {
+  background-color: #96FFC0;
+  font-size: 15px;
+  padding: 15px;
+  border: 1px solid #548F6C;
+}
+
+ul {
+  list-style: none;
+  margin: -20px 0 0 -10px;
+  padding: 0;
+}
+
+.task {
+  background-color: #EFEFEF;
+  font-size: 15px;
+  padding: 15px;
+  border: 1px solid #999999;
+  margin: 10px;
+}
+
+.delete {
+  background-color: #cccccc;
+  display: inline-block;
+  border: 1px solid black;
+  position: relative;
+  top: -6px;
+  left: 5px;
+  padding: 5px;
+}
+
+.task_name {
+  display: inline-block;
+}
+
+.edit_task {
+  float: right;
+}
+
+h1, h1 a {
+  display: inline-block;
+}
+
+section a:nth-child(2) {
+  float: right;
+  margin: 20px 10px 0 0;
+}
+
+section a:nth-child(3) {
+  float: right;
+  margin: 20px 100px 0 0;
+}
+
+.form_list li {
+  margin: 20px;
+  font-size: 15px;
+}
+
+.form_list {
+  margin-top: 10px;
+  padding: 0;
+}
+
+.form_list input[type='text'] {
+  width: 300px;
+}
+
+.button {
+  background-color: blue;
+  color: #fff;
+  border: 1px solid #999999;
+  border-radius: 2px;
 }

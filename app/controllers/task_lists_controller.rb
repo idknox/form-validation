@@ -32,8 +32,6 @@ class TaskListsController < ApplicationController
   end
 
   def show
-    puts "*" * 80
-    puts params
     @task_list = TaskList.find(params[:id])
     @tasks = Task.where(:task_list_id => params[:id])
   end

@@ -6,11 +6,17 @@
       <%= error %>
     </div>
   <% end %>
-  <div>
+    <ul class="form_list">
+      <li>
     <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+    </li>
+      <li>
+        <%= f.text_field :name, autofocus: true %>
+      </li>
+<li>
 <div>
-  <%= f.submit "Create Task List" %>
+  <%= f.submit "Create Task List", class: "button" %>
 </div>
+      </li>
+      </ul>
 <% end %>

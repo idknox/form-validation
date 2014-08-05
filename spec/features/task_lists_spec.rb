@@ -9,16 +9,13 @@ feature 'Task lists' do
     fill_in "Email", with: "user@example.com"
     fill_in "Password", with: "password"
     click_on "Login"
+
+    click_on "Add Task List"
+    fill_in "Name", :with => "Whatever"
+    click_on "Create Task List"
   end
 
   scenario "user can add tasks" do
-
-    click_on "Add Task List"
-
-    fill_in "Name", :with => "Whatever"
-
-    click_on "Create Task List"
-
     expect(page).to have_content "Task List was created successfully!"
     expect(page).to have_content "Whatever", "My Lists"
   end
@@ -32,12 +29,6 @@ feature 'Task lists' do
   end
 
   scenario "user can edit task_list" do
-    click_on "Add Task List"
-
-    fill_in "Name", :with => "Whatever"
-
-    click_on "Create Task List"
-
     expect(page).to have_content "Task List was created successfully!"
     expect(page).to have_content "Whatever", "My Lists"
     click_link "Edit"
@@ -49,14 +40,7 @@ feature 'Task lists' do
   end
 
   scenario "User can add and delete tasks" do
-    click_on "Add Task List"
-
-    fill_in "Name", :with => "Whatever"
-
-    click_on "Create Task List"
-
     click_link "Add Task"
-
     fill_in "Description", :with => "Do things"
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
@@ -70,14 +54,7 @@ feature 'Task lists' do
   end
 
   scenario "User can vie Task List page" do
-    click_on "Add Task List"
-
-    fill_in "Name", :with => "Whatever"
-
-    click_on "Create Task List"
-
     click_link "Add Task"
-
     fill_in "Description", :with => "Do things"
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
