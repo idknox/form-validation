@@ -10,3 +10,5 @@ User.create!(
 
 TaskList.create!(name: "Work List")
 TaskList.create!(name: "Household Chores")
+
+TaskList.destroy_all
