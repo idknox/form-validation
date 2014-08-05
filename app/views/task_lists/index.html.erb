@@ -1,3 +1,4 @@
+
 <h1>My Lists</h1>
 <a href="/task_lists/new">Add Task List</a>
 <% if flash[:notice] %>
@@ -10,6 +11,11 @@
   <section class="task-list">
     <h1><%= task_list.name %></h1>
     <a href="/task_lists/<%= task_list.id %>/edit" id="<%= task_list.id %>">Edit</a>
-  </section>
-
+    <a href="/task_lists/<%= task_list.id %>/tasks/new">Add Task</a>
+    <% @tasks.each do |task| %>
+      <% if task.task_list_id == task_list.id %>
+        <h3><%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %></h3>
+      <% end %>
+      </section>
+    <% end %>
 <% end %>

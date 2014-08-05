@@ -47,6 +47,23 @@ feature 'Task lists' do
 
     expect(page).to have_content "Your task list was successfully updated", "New name"
   end
+
+  scenario "User can add tasks" do
+    click_on "Add Task List"
+
+    fill_in "Name", :with => "Whatever"
+
+    click_on "Create Task List"
+    click_link "Add Task"
+
+    fill_in "Description", :with => "Do things"
+    page.select "March", :from => "task_date_2i"
+    page.select "6", :from => "task_date_3i"
+    page.select "2015", :from => "task_date_1i"
+    click_button "Create Task"
+
+    expect(page).to have_content "Do things", "03-06-2015"
+  end
 end
 
 feature "About Page" do

@@ -2,6 +2,7 @@ class TaskListsController < ApplicationController
 
   def index
     @task_lists = TaskList.order(:name)
+    @tasks = Task.where(:user_id => session[:user_id])
   end
 
   def new
