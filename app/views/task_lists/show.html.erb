@@ -1,0 +1,15 @@
+<h1><%= @task_list.name %></h1>
+<ul>
+  <% @tasks.each do |task| %>
+    <% if task.task_list_id == @task_list.id %>
+      <li>
+        <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %>
+      </li>
+      <%= form_for [@task_list, task], method: :delete do |f| %>
+        <div>
+          <%= f.submit "Delete" %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>

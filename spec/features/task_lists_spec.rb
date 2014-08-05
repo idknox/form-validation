@@ -69,6 +69,30 @@ feature 'Task lists' do
     expect(page).to_not have_content "Do things", "03-06-2015"
   end
 
+  scenario "User can vie Task List page" do
+    click_on "Add Task List"
+
+    fill_in "Name", :with => "Whatever"
+
+    click_on "Create Task List"
+
+    click_link "Add Task"
+
+    fill_in "Description", :with => "Do things"
+    page.select "March", :from => "task_date_2i"
+    page.select "6", :from => "task_date_3i"
+    page.select "2015", :from => "task_date_1i"
+    click_button "Create Task"
+
+    click_on "Add Task List"
+    fill_in "Name", :with => "Stuff"
+    click_on "Create Task List"
+
+    click_on "Whatever"
+    expect(page).to have_content "Whatever", "Do things", "03-06-2015"
+    expect(page).to_not have_content "Stuff"
+  end
+
 end
 
 feature "About Page" do
