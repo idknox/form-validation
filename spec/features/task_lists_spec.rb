@@ -48,7 +48,7 @@ feature 'Task lists' do
     expect(page).to have_content "Your task list was successfully updated", "New name"
   end
 
-  scenario "User can add tasks" do
+  scenario "User can add and delete tasks" do
     click_on "Add Task List"
 
     fill_in "Name", :with => "Whatever"
@@ -63,7 +63,11 @@ feature 'Task lists' do
     click_button "Create Task"
 
     expect(page).to have_content "Do things", "03-06-2015"
+    click_on "Delete"
+    expect(page).to have_content "Whatever", "My Lists"
+    expect(page).to_not have_content "Do things", "03-06-2015"
   end
+
 end
 
 feature "About Page" do
