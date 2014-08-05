@@ -1,6 +1,6 @@
 <h1>Add a task</h1>
 
-<%= form_for @task, url: "/task_lists/#{@task_list.id}/tasks", html: { class: "add_task"} do |f| %>
+<%= form_for [@task_list, @task] do |f| %>
   <% f.object.errors.full_messages.each do |error| %>
     <div class="errors">
       <%= error %>

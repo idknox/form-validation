@@ -2,14 +2,14 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @task_list = TaskList.find(params[:id])
+    @task_list = TaskList.find(params[:task_list_id])
   end
 
   def create
     @task = Task.new(
       description: params[:task][:description],
       user_id: session[:user_id],
-      task_list_id: params[:id]
+      task_list_id: params[:task_list_id]
     )
     @task.date = @task.create_date(params[:task])
 

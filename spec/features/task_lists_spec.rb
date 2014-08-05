@@ -54,6 +54,7 @@ feature 'Task lists' do
     fill_in "Name", :with => "Whatever"
 
     click_on "Create Task List"
+
     click_link "Add Task"
 
     fill_in "Description", :with => "Do things"
