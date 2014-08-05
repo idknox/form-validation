@@ -1,6 +1,5 @@
-
 <h1>My Lists</h1>
-<a href="/task_lists/new">Add Task List</a>
+<a href="task_lists/new">Add Task List</a>
 <% if flash[:notice] %>
   <div class="errors">
     <%= flash[:notice] %>
@@ -15,7 +14,12 @@
     <% @tasks.each do |task| %>
       <% if task.task_list_id == task_list.id %>
         <h3><%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %></h3>
+        <%= form_for task, url: "/task_lists/#{task_list.id}/tasks/#{task.id}", method: :delete, html: {class: "add_task"} do |f| %>
+          <div>
+            <%= f.submit "Delete" %>
+          </div>
+        <% end %>
       <% end %>
-      </section>
     <% end %>
+  </section>
 <% end %>

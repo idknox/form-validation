@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   get "signout" => "sessions#destroy", as: :signout
   get "about" => "sessions#about"
   get "task_lists/new" => "task_lists#new"
-  get "task_lists/:id/edit" => "task_lists#edit"
-  get "task_lists/:id/tasks/new" => "tasks#new"
   post "task_lists" => "task_lists#create"
-  post "signin" => "sessions#create"
-  post "task_lists/:id/tasks/new" => "tasks#create", as: :task_create
+  get "task_lists/:id/edit" => "task_lists#edit"
   patch "task_lists/:id" => "task_lists#update"
+  get "task_lists/:id/tasks/new" => "tasks#new"
+  post "task_lists/:id/tasks" => "tasks#create"
+  post "signin" => "sessions#create"
+  delete "task_lists/:id/tasks/:id" => "tasks#destroy"
+
 end
