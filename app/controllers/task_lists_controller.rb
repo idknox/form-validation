@@ -55,4 +55,11 @@ class TaskListsController < ApplicationController
     )
     render :show
   end
+
+  def destroy
+    task_list = TaskList.find(params[:id])
+    task_list.destroy
+    flash[:notice] = "Task List deleted"
+    redirect_to root_path
+  end
 end

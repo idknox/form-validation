@@ -48,7 +48,9 @@ feature 'Task lists' do
     click_button "Create Task"
 
     expect(page).to have_content "Do things", "03-06-2015"
-    click_on "Delete"
+    within ".task" do
+      click_on "Delete"
+    end
     expect(page).to have_content "Whatever", "My Lists"
     expect(page).to_not have_content "Do things", "03-06-2015"
   end
@@ -109,10 +111,18 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    click_button "Create Task"\
+    click_button "Create Task"
 
     expect(page).to have_content "Do things 2 (212 days) Do things (578 days)"
   end
+
+  scenario "user can delete task lists" do
+    click_on "Delete"
+
+    expect(page).to_not have_content "Whatever"
+    expect(page).to have_content "My Lists"
+  end
+
 end
 
 feature "About Page" do
