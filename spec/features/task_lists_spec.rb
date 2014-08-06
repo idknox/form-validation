@@ -113,7 +113,7 @@ feature 'Task lists' do
     page.select "2015", :from => "task_date_1i"
     click_button "Create Task"
 
-    expect(page).to have_content "Do things 2 (212 days) Do things (578 days)"
+    expect(page).to have_content "Do things 2 (212 days) - Some User Do things (578 days) - Some User"
   end
 
   scenario "user can delete task lists" do
@@ -132,6 +132,18 @@ feature 'Task lists' do
 
     visit "task_lists/*/tasks/new"
     expect(page).to have_content "Rails Practice Email Password About"
+  end
+
+  scenario "assign tasks to user" do
+    click_link "Add Task"
+    fill_in "Description", :with => "Do things"
+    page.select "March", :from => "task_date_2i"
+    page.select "6", :from => "task_date_3i"
+    page.select "2015", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
+    click_button "Create Task"
+
+    expect(page).to have_content "My Lists", "Do things - Some User"
   end
 
 end

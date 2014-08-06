@@ -20,6 +20,12 @@
       <%= f.date_select :date %>
     </li>
     <li>
+      <%= f.label :assigned_id %>
+    </li>
+    <li>
+      <%= f.select :user, @users %>
+    </li>
+    <li>
       <div>
         <%= f.submit "Create Task", class: "button" %>
       </div>

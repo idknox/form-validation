@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @task_list = TaskList.find(params[:task_list_id])
+    @users = get_names
   end
 
   def create
@@ -10,6 +11,7 @@ class TasksController < ApplicationController
       description: params[:task][:description],
       user_id: session[:user_id],
       task_list_id: params[:task_list_id],
+      user: params[:task][:user],
       complete: false
     )
     @task.date = @task.create_date(params[:task])
@@ -34,5 +36,9 @@ class TasksController < ApplicationController
     task.save
     flash[:notice] = "Task Completed"
     redirect_to root_path
+  end
+
+  def get_names
+    User.select(:name).to_a.map { |user| user.name }
   end
 end

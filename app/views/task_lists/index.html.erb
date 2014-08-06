@@ -23,7 +23,7 @@
           <li>
             <div class="task">
               <div class="task_name">
-                <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %>
+                <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %> - <b><%= task.user %></b>
               </div>
               <%= form_for [task_list[:task_list], task], method: :delete do |f| %>
                 <%= f.submit "Delete", class: "delete" %>
@@ -36,8 +36,8 @@
         <% end %>
       <% else %>
         <li>
-          <div class="task">
-            Nothing here to see!
+          <div class="task_blank">
+            <span>Nothing here to see!</span>
           </div>
         </li>
       <% end %>
