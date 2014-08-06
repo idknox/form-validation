@@ -2,7 +2,10 @@ class TaskListsController < ApplicationController
 
   def index
     @task_lists = TaskList.order(:name)
-    @tasks = Task.where(:user_id => session[:user_id])
+    @tasks = Task.where(
+      :user_id => session[:user_id],
+      :complete => false
+    )
   end
 
   def new
@@ -32,7 +35,21 @@ class TaskListsController < ApplicationController
   end
 
   def show
+    @title = ""
     @task_list = TaskList.find(params[:id])
-    @tasks = Task.where(:task_list_id => params[:id])
+    @tasks = Task.where(
+      :task_list_id => params[:id],
+      :complete => false
+    )
+  end
+
+  def show_completed
+    @title = " - Completed"
+    @task_list = TaskList.find(params[:id])
+    @tasks = Task.where(
+      :task_list_id => params[:id],
+      :complete => true
+    )
+    render :show
   end
 end

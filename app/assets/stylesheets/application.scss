@@ -133,6 +133,7 @@ ul {
   top: -6px;
   left: 5px;
   padding: 5px;
+  margin-left: 10px;
 }
 
 .task_name {
@@ -147,14 +148,17 @@ h1, h1 a {
   display: inline-block;
 }
 
-section a:nth-child(2) {
-  float: right;
-  margin: 20px 10px 0 0;
+section a:nth-child(1) {
+  margin-left: 0;
 }
 
-section a:nth-child(3) {
+.list_options {
   float: right;
-  margin: 20px 100px 0 0;
+  margin: 35px 10px -10px 0;
+}
+
+.list_options a {
+  margin-left: 40px;
 }
 
 .form_list li {

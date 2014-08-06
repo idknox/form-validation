@@ -9,7 +9,8 @@ class TasksController < ApplicationController
     @task = Task.new(
       description: params[:task][:description],
       user_id: session[:user_id],
-      task_list_id: params[:task_list_id]
+      task_list_id: params[:task_list_id],
+      complete: false
     )
     @task.date = @task.create_date(params[:task])
 
@@ -24,7 +25,14 @@ class TasksController < ApplicationController
   def destroy
     task = Task.find(params[:id])
     task.destroy
-    redirect_to root_path
+    redirect_to :back
   end
 
+  def complete
+    task = Task.find(params[:id])
+    task.complete = true
+    task.save
+    flash[:notice] = "Task Completed"
+    redirect_to root_path
+  end
 end
