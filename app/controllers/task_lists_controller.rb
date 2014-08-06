@@ -9,7 +9,10 @@ class TaskListsController < ApplicationController
   end
 
   def create
-    @task_list = TaskList.new(:name => params[:task_list][:name])
+    @task_list = TaskList.new(
+      :name => params[:task_list][:name],
+      :user_id => session[:user_id]
+    )
     if @task_list.save
       flash[:notice] = "Task List was created successfully!"
       redirect_to root_path
@@ -62,7 +65,7 @@ class TaskListsController < ApplicationController
   private
 
   def get_task_list
-    TaskList.order(:name).to_a.map do |tl|
+    User.find(session[:user_id]).task_lists.order(:name).to_a.map do |tl|
       {
         :task_list => tl,
         :tasks => tl.tasks_for_user(session[:user_id])
