@@ -1,11 +1,7 @@
 class TaskListsController < ApplicationController
 
   def index
-    @task_lists = TaskList.order(:name)
-    @tasks = Task.where(
-      :user_id => session[:user_id],
-      :complete => false
-    ).order(:date)
+    @task_lists = get_task_list
   end
 
   def new
@@ -61,5 +57,16 @@ class TaskListsController < ApplicationController
     task_list.destroy
     flash[:notice] = "Task List deleted"
     redirect_to root_path
+  end
+
+  private
+
+  def get_task_list
+    TaskList.order(:name).to_a.map do |tl|
+      {
+        :task_list => tl,
+        :tasks => tl.tasks_for_user(session[:user_id])
+      }
+    end
   end
 end

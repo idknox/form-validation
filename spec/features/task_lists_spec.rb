@@ -123,6 +123,10 @@ feature 'Task lists' do
     expect(page).to have_content "My Lists"
   end
 
+  scenario "taskless list shows message" do
+    expect(page).to have_content "Nothing here to see!"
+  end
+
 end
 
 feature "About Page" do
