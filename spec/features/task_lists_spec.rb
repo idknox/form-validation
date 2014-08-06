@@ -127,6 +127,13 @@ feature 'Task lists' do
     expect(page).to have_content "Nothing here to see!"
   end
 
+  scenario "logged out user can't access any task pages" do
+    click_on "Logout"
+
+    visit "task_lists/*/tasks/new"
+    expect(page).to have_content "Rails Practice Email Password About"
+  end
+
 end
 
 feature "About Page" do
