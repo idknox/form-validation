@@ -95,6 +95,24 @@ feature 'Task lists' do
     click_on "Completed"
     expect(page).to have_content "Do things", "Whatever - Completed"
   end
+
+  scenario "tasks display sorted by date" do
+    click_link "Add Task"
+    fill_in "Description", :with => "Do things"
+    page.select "March", :from => "task_date_2i"
+    page.select "6", :from => "task_date_3i"
+    page.select "2016", :from => "task_date_1i"
+    click_button "Create Task"
+
+    click_link "Add Task"
+    fill_in "Description", :with => "Do things 2"
+    page.select "March", :from => "task_date_2i"
+    page.select "6", :from => "task_date_3i"
+    page.select "2015", :from => "task_date_1i"
+    click_button "Create Task"\
+
+    expect(page).to have_content "Do things 2 (212 days) Do things (578 days)"
+  end
 end
 
 feature "About Page" do

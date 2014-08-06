@@ -5,7 +5,7 @@ class TaskListsController < ApplicationController
     @tasks = Task.where(
       :user_id => session[:user_id],
       :complete => false
-    )
+    ).order(:date)
   end
 
   def new
@@ -29,9 +29,12 @@ class TaskListsController < ApplicationController
   def update
     @task_list = TaskList.find(params[:id])
     @task_list.name = params[:task_list][:name]
-    @task_list.save
-    flash[:notice] = "Your task list was successfully updated!"
-    redirect_to root_path
+    if @task_list.save
+      flash[:notice] = "Your task list was successfully updated!"
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def show
