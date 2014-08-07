@@ -8,7 +8,7 @@ class TaskList < ActiveRecord::Base
   def tasks_for_user(user_id)
     tasks.where(
       :user_id => user_id,
-      :complete => false
+      :completed => false
     ).order(:date)
   end
 end

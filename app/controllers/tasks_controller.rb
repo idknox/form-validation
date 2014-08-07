@@ -17,7 +17,7 @@ class TasksController < ApplicationController
       :user_id => session[:user_id],
       :task_list_id => params[:task_list_id],
       :assigned_to => params[:task][:assigned_to],
-      :complete => false,
+      :completed => false,
       :date => create_date(params[:task])
     )
 
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
 
   def complete
     task = Task.find(params[:id])
-    task.complete = true
+    task.completed = true
     task.save
     flash[:notice] = "Task Completed"
     redirect_to root_path

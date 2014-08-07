@@ -43,7 +43,7 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.find(params[:id])
     @tasks = Task.where(
       :task_list_id => params[:id],
-      :complete => false
+      :completed => false
     )
   end
 
@@ -52,9 +52,9 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.find(params[:id])
     @tasks = Task.where(
       :task_list_id => params[:id],
-      :complete =>  true
+      :completed =>  true
     )
-    render :show
+    render :index
   end
 
   def destroy

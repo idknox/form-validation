@@ -15,7 +15,7 @@
     <h1><%= link_to task_list[:task_list].name, task_list_path(task_list[:task_list].id), class: "task_list" %></h1>
 
     <div class="list_options">
-      <%= link_to "Completed", task_list_completed_path(task_list[:task_list].id) %>
+      <%= link_to "Completed", task_list_completed_tasks_path(task_list[:task_list].id) %>
       <%= link_to "Delete", task_list_path(task_list[:task_list]), method: :delete %>
 
       <%= link_to "Edit", edit_task_list_path(task_list[:task_list].id) %>
@@ -31,7 +31,8 @@
                 <b><%= task.assigned_to %></b>
               </div>
               <%= link_to "Delete", task_list_task_path(task_list[:task_list].id, task.id), method: :delete, class: "delete" %>
-              <%= form_for [task_list[:task_list], task], url: task_complete_path(task_list[:task_list].id, task.id) do |f| %>
+              <%= form_for task, url: task_list_completed_tasks_path(task_list[:task_list].id), method: :post do |f| %>
+                <%= f.hidden_field :id %>
                 <%= f.submit "Complete", class: "delete" %>
               <% end %>
             </div>
