@@ -6,9 +6,8 @@
         <div class="task_name">
           <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %>
         </div>
-        <%= form_for [@task_list, task], method: :delete do |f| %>
-          <%= f.submit "Delete", class: "delete" %>
-        <% end %>
+        <%= link_to "Delete", task_list_task_path(@task_list, task), method: :delete %>
+
         </div>
         </li>
   <% end %>

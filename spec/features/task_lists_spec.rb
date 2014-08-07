@@ -121,7 +121,7 @@ feature 'Task lists' do
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
-    expect(page).to have_content "Do things 2 (211 days) - Some User Do things (577 days) - Some User"
+    expect(page).to have_content "Do things 2 (211 days) - Some User Delete Do things (577 days) - Some User"
   end
 
   scenario "user can delete task lists" do

@@ -16,9 +16,8 @@
 
     <div class="list_options">
       <%= link_to "Completed", task_list_completed_path(task_list[:task_list].id) %>
-      <%= form_for task_list[:task_list], method: :delete do |f| %>
-        <%= f.submit "Delete" %>
-      <% end %>
+      <%= link_to "Delete", task_list_path(task_list[:task_list]), method: :delete %>
+
       <%= link_to "Edit", edit_task_list_path(task_list[:task_list].id) %>
       <%= link_to "Add Task", new_task_list_task_path(task_list[:task_list].id) %>
     </div>
@@ -31,9 +30,7 @@
                 <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %> -
                 <b><%= task.assigned_to %></b>
               </div>
-              <%= form_for [task_list[:task_list], task], method: :delete do |f| %>
-                <%= f.submit "Delete", class: "delete" %>
-              <% end %>
+              <%= link_to "Delete", task_list_task_path(task_list[:task_list].id, task.id), method: :delete, class: "delete" %>
               <%= form_for [task_list[:task_list], task], url: task_complete_path(task_list[:task_list].id, task.id) do |f| %>
                 <%= f.submit "Complete", class: "delete" %>
               <% end %>
