@@ -1,5 +1,10 @@
 class TasksController < ApplicationController
 
+  def index
+    @user = User.find(session[:user_id])
+    @tasks = Task.where(:user_id => session[:user_id])
+  end
+
   def new
     @task = Task.new
     @task_list = TaskList.find(params[:task_list_id])
@@ -8,14 +13,13 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(
-      description: params[:task][:description],
-      user_id: session[:user_id],
-      task_list_id: params[:task_list_id],
-      user: params[:task][:user],
-      assigned_user_id: User.find_by(:name => params[:task][:user]).id,
-      complete: false
+      :description => params[:task][:description],
+      :user_id => session[:user_id],
+      :task_list_id => params[:task_list_id],
+      :assigned_to => params[:task][:assigned_to],
+      :complete => false,
+      :date => create_date(params[:task])
     )
-    @task.date = @task.create_date(params[:task])
 
     if @task.save
       flash[:notice] = "Task was created successfully!"
@@ -40,13 +44,18 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
-  def index
-    @user = User.find(session[:user_id])
-    @tasks = Task.where(:assigned_user_id => session[:user_id])
-  end
-
   def search
     @tasks = Task.where("description LIKE '%#{params[:q]}%'")
     render :search
+  end
+
+  private
+
+  def create_date(params)
+    Date.civil(
+      params["date(1i)"].to_i,
+      params["date(2i)"].to_i,
+      params["date(3i)"].to_i
+    )
   end
 end

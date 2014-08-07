@@ -52,7 +52,7 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.find(params[:id])
     @tasks = Task.where(
       :task_list_id => params[:id],
-      :complete => true
+      :complete =>  true
     )
     render :show
   end

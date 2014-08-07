@@ -47,7 +47,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     expect(page).to have_content "Do things", "03-06-2015"
@@ -64,7 +64,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     click_on "Add Task List"
@@ -82,7 +82,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     click_on "Complete"
@@ -96,7 +96,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     click_on "Complete"
@@ -110,7 +110,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2016", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     click_link "Add Task"
@@ -118,7 +118,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     expect(page).to have_content "Do things 2 (211 days) - Some User Do things (577 days) - Some User"
@@ -148,7 +148,7 @@ feature 'Task lists' do
     page.select "August", :from => "task_date_2i"
     page.select "5", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     expect(page).to have_content "My Lists", "Do things - Some User"
@@ -156,6 +156,7 @@ feature 'Task lists' do
 
   scenario "user cannot create blank task" do
     click_link "Add Task"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     expect(page).to have_content "Add a task", "Your task could not be created"
@@ -167,7 +168,7 @@ feature 'Task lists' do
     page.select "August", :from => "task_date_2i"
     page.select "5", :from => "task_date_3i"
     page.select "2014", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     expect(page).to have_content "Add a task"
@@ -180,7 +181,7 @@ feature 'Task lists' do
     page.select "August", :from => "task_date_2i"
     page.select "5", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     click_link "Add Task"
@@ -188,10 +189,10 @@ feature 'Task lists' do
     page.select "August", :from => "task_date_2i"
     page.select "5", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
-    click_on "View Assigned Tasks"
+    click_on "View Tasks"
     expect(page).to have_content "Some User's Tasks", "Do thins2", "Do things"
   end
 
@@ -212,7 +213,7 @@ feature 'Task lists' do
     page.select "August", :from => "task_date_2i"
     page.select "5", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     click_link "Add Task"
@@ -220,7 +221,7 @@ feature 'Task lists' do
     page.select "August", :from => "task_date_2i"
     page.select "5", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
-    page.select "Some User", :from => "task_user"
+    page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     fill_in "q", :with => "gSchool"

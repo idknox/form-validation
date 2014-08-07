@@ -2,12 +2,13 @@ require "date"
 
 class Task < ActiveRecord::Base
   belongs_to :task_list
+  belongs_to :user
 
   validates :description, presence: {
     :message => "Your task could not be created"
   }
 
-  validates :user, presence: {
+  validates :assigned_to, presence: {
     :message => "Task must have user assigned"
   }
 
@@ -19,11 +20,4 @@ class Task < ActiveRecord::Base
     end
   end
 
-  def create_date(params)
-    Date.civil(
-      params["date(1i)"].to_i,
-      params["date(2i)"].to_i,
-      params["date(3i)"].to_i
-    )
-  end
 end
