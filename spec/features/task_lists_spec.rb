@@ -168,6 +168,26 @@ feature 'Task lists' do
     expect(page).to have_content "Add a task"
     expect(page).to have_content "Please select a future date"
   end
+  scenario "user can view their assigned tasks" do
+    click_link "Add Task"
+    fill_in "Description", :with => "Do things"
+    page.select "August", :from => "task_date_2i"
+    page.select "5", :from => "task_date_3i"
+    page.select "2015", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
+    click_button "Create Task"
+
+    click_link "Add Task"
+    fill_in "Description", :with => "Do things2"
+    page.select "August", :from => "task_date_2i"
+    page.select "5", :from => "task_date_3i"
+    page.select "2015", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
+    click_button "Create Task"
+
+    click_on "View Assigned Tasks"
+    expect(page).to have_content "Some User's Tasks", "Do thins2", "Do things"
+  end
 end
 
 feature "About Page" do

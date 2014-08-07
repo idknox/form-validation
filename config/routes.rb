@@ -6,8 +6,13 @@ Rails.application.routes.draw do
   post "/signin" => "sessions#create"
   patch "/task_lists/:task_list_id/tasks/:id/completed" => "tasks#complete", as: :task_complete
   get "/task_lists/:id/completed" => "task_lists#show_completed", as: :task_list_completed
+
+
   resources :task_lists do
     resources :tasks
   end
 
+  resources :users do
+    resources :tasks
+  end
 end

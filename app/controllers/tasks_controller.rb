@@ -12,6 +12,7 @@ class TasksController < ApplicationController
       user_id: session[:user_id],
       task_list_id: params[:task_list_id],
       user: params[:task][:user],
+      assigned_user_id: User.find_by(:name => params[:task][:user]).id,
       complete: false
     )
     @task.date = @task.create_date(params[:task])
@@ -39,4 +40,8 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
+  def index
+    @user = User.find(session[:user_id])
+    @tasks = Task.where(:assigned_user_id => session[:user_id])
+  end
 end
