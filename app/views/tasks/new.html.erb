@@ -17,7 +17,7 @@
       <%= f.label :due_date %>
     </li>
     <li class="dropdown">
-      <%= f.date_select :date %>
+      <%= f.date_select :date, :start_year => Date.current.year %>
     </li>
     <li>
       <%= f.label :assigned_id %>

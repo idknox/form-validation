@@ -38,6 +38,8 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
+  private
+
   def get_names
     User.select(:name).to_a.map { |user| user.name }
   end

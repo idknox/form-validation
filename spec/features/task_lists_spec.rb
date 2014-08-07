@@ -137,15 +137,25 @@ feature 'Task lists' do
   scenario "assign tasks to user" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
-    page.select "March", :from => "task_date_2i"
-    page.select "6", :from => "task_date_3i"
+    page.select "August", :from => "task_date_2i"
+    page.select "5", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
     page.select "Some User", :from => "task_user"
     click_button "Create Task"
 
     expect(page).to have_content "My Lists", "Do things - Some User"
   end
+  scenario "user cannot create a past task" do
+    click_link "Add Task"
+    fill_in "Description", :with => "Do things"
+    page.select "August", :from => "task_date_2i"
+    page.select "5", :from => "task_date_3i"
+    page.select "2014", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
+    click_button "Create Task"
 
+    expect(page).to have_content "Add a task", "Please select a future date"
+  end
 end
 
 feature "About Page" do
@@ -159,6 +169,4 @@ feature "About Page" do
   elit. Suspendisse potenti. Maecenas consequat magna eu urna rhoncus tristique. Proin hendrerit in quam quis imperdiet.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et hendrerit est."
   end
-
-
 end
