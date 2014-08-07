@@ -7,6 +7,10 @@ class Task < ActiveRecord::Base
     :message => "Your task could not be created"
   }
 
+  validates :user, presence: {
+    :message => "Task must have user assigned"
+  }
+
   validate :date_cannot_be_past
 
   def date_cannot_be_past

@@ -47,6 +47,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
     click_button "Create Task"
 
     expect(page).to have_content "Do things", "03-06-2015"
@@ -63,6 +64,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
     click_button "Create Task"
 
     click_on "Add Task List"
@@ -80,6 +82,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
     click_button "Create Task"
 
     click_on "Complete"
@@ -93,6 +96,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
     click_button "Create Task"
 
     click_on "Complete"
@@ -189,6 +193,17 @@ feature 'Task lists' do
 
     click_on "View Assigned Tasks"
     expect(page).to have_content "Some User's Tasks", "Do thins2", "Do things"
+  end
+
+  scenario "Task must have user assigned" do
+    click_link "Add Task"
+    fill_in "Description", :with => "Do things"
+    page.select "August", :from => "task_date_2i"
+    page.select "5", :from => "task_date_3i"
+    page.select "2015", :from => "task_date_1i"
+    click_button "Create Task"
+
+    expect(page).to have_content "Task must have user assigned", "Whatever"
   end
 
   scenario "user can search for tasks" do
