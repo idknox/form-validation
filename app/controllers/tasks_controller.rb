@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @task_list = TaskList.find(params[:task_list_id])
-    @users = get_names
+    @users = User.get_names
   end
 
   def create
@@ -20,6 +20,7 @@ class TasksController < ApplicationController
       flash[:notice] = "Task was created successfully!"
       redirect_to root_path
     else
+      @users = User.get_names
       render :new
     end
   end
@@ -38,9 +39,4 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
-  private
-
-  def get_names
-    User.select(:name).to_a.map { |user| user.name }
-  end
 end

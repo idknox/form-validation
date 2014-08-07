@@ -29,9 +29,11 @@ feature 'Task lists' do
   end
 
   scenario "user can edit task_list" do
-    expect(page).to have_content "Task List was created successfully!"
-    expect(page).to have_content "Whatever", "My Lists"
     click_link "Edit"
+    fill_in "Name", :with => ""
+    click_on "Update Task List"
+
+    expect(page).to have_content "Your task list could not be created", "New name"
 
     fill_in "Name", :with => "New name"
     click_on "Update Task List"
@@ -104,6 +106,7 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2016", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
     click_button "Create Task"
 
     click_link "Add Task"
@@ -111,9 +114,10 @@ feature 'Task lists' do
     page.select "March", :from => "task_date_2i"
     page.select "6", :from => "task_date_3i"
     page.select "2015", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
     click_button "Create Task"
 
-    expect(page).to have_content "Do things 2 (212 days) - Some User Do things (578 days) - Some User"
+    expect(page).to have_content "Do things 2 (211 days) - Some User Do things (577 days) - Some User"
   end
 
   scenario "user can delete task lists" do
@@ -145,6 +149,13 @@ feature 'Task lists' do
 
     expect(page).to have_content "My Lists", "Do things - Some User"
   end
+  scenario "user cannot create blank task" do
+    click_link "Add Task"
+    click_button "Create Task"
+
+    expect(page).to have_content "Add a task", "Your task could not be created"
+  end
+
   scenario "user cannot create a past task" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
@@ -154,7 +165,8 @@ feature 'Task lists' do
     page.select "Some User", :from => "task_user"
     click_button "Create Task"
 
-    expect(page).to have_content "Add a task", "Please select a future date"
+    expect(page).to have_content "Add a task"
+    expect(page).to have_content "Please select a future date"
   end
 end
 

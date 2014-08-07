@@ -3,11 +3,17 @@ require "date"
 class Task < ActiveRecord::Base
   belongs_to :task_list
 
-  validates :description, :presence => {
+  validates :description, presence: {
     :message => "Your task could not be created"
   }
 
   validate :date_cannot_be_past
+
+  def date_cannot_be_past
+    if date < Date.today
+      errors[:date] = "Please select a future date"
+    end
+  end
 
   def create_date(params)
     Date.civil(
@@ -16,11 +22,4 @@ class Task < ActiveRecord::Base
       params["date(3i)"].to_i
     )
   end
-
-  def date_cannot_be_past
-    if date.past?
-      errors.add(:date, "Please select a past date")
-    end
-  end
-
 end
