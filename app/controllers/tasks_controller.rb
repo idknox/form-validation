@@ -44,4 +44,9 @@ class TasksController < ApplicationController
     @user = User.find(session[:user_id])
     @tasks = Task.where(:assigned_user_id => session[:user_id])
   end
+
+  def search
+    @tasks = Task.where("description LIKE '%#{params[:q]}%'")
+    render :search
+  end
 end

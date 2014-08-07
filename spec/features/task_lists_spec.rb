@@ -149,6 +149,7 @@ feature 'Task lists' do
 
     expect(page).to have_content "My Lists", "Do things - Some User"
   end
+
   scenario "user cannot create blank task" do
     click_link "Add Task"
     click_button "Create Task"
@@ -168,6 +169,7 @@ feature 'Task lists' do
     expect(page).to have_content "Add a task"
     expect(page).to have_content "Please select a future date"
   end
+
   scenario "user can view their assigned tasks" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
@@ -187,5 +189,28 @@ feature 'Task lists' do
 
     click_on "View Assigned Tasks"
     expect(page).to have_content "Some User's Tasks", "Do thins2", "Do things"
+  end
+
+  scenario "user can search for tasks" do
+    click_link "Add Task"
+    fill_in "Description", :with => "Event with gSchool on Monday"
+    page.select "August", :from => "task_date_2i"
+    page.select "5", :from => "task_date_3i"
+    page.select "2015", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
+    click_button "Create Task"
+
+    click_link "Add Task"
+    fill_in "Description", :with => "Event with Turing"
+    page.select "August", :from => "task_date_2i"
+    page.select "5", :from => "task_date_3i"
+    page.select "2015", :from => "task_date_1i"
+    page.select "Some User", :from => "task_user"
+    click_button "Create Task"
+
+    fill_in "q", :with => "gSchool"
+    click_on "Search Tasks"
+    expect(page).to have_content "Event with gSchool", "Found Tasks"
+    expect(page).to_not have_content "Event with Turing", "My Lists"
   end
 end

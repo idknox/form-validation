@@ -85,8 +85,18 @@ main {
   }
 }
 
-.about h1 {
+.wrapper {
+  margin: auto;
+  width: 980px;
+}
+
+.wrapper h1 {
   text-align: center;
+}
+
+.search {
+  display: inline-block;
+  margin-left: 20px;
 }
 
 .task_list {

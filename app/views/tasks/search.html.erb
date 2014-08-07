@@ -1,0 +1,12 @@
+<h1>Found Tasks</h1>
+<ul>
+  <% @tasks.to_a.each do |task| %>
+    <li>
+      <div class="task">
+        <div class="task_name">
+          <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
