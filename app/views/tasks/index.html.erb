@@ -6,9 +6,6 @@
         <div class="task_name">
           <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %>
         </div>
-        <%= form_for [@user, task], method: :delete do |f| %>
-          <%= f.submit "Delete", class: "delete" %>
-        <% end %>
       </div>
     </li>
   <% end %>
