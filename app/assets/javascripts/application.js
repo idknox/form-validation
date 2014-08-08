@@ -4,5 +4,5 @@
 //= require jquery-ui
 
 $(function () {
-  $('.cal_date').datepicker();
+  $('.cal-date').datepicker({ dateFormat: "yy-mm-dd"});
 });

@@ -2,7 +2,9 @@ class TasksController < ApplicationController
 
   def index
     @user = User.find(session[:user_id])
-    @tasks = Task.where(:user_id => session[:user_id])
+    @tasks = get_filtered_tasks(params)
+    p "*" * 80
+    p @tasks
   end
 
   def new
@@ -51,11 +53,11 @@ class TasksController < ApplicationController
 
   private
 
-  def create_date(params)
-    Date.civil(
-      params["date(1i)"].to_i,
-      params["date(2i)"].to_i,
-      params["date(3i)"].to_i
-    )
+  def get_filtered_tasks(params)
+    if params[:date][:start]
+      Task.filtered_tasks(params)
+    else
+      Task.where(:user_id => session[:user_id])
+    end
   end
 end

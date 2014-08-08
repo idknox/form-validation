@@ -4,6 +4,7 @@ class TaskListsController < ApplicationController
 
   def index
     @task_lists = get_task_list
+    @user = User.find(session[:user_id])
   end
 
   def new

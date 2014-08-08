@@ -54,6 +54,10 @@ main {
   margin-bottom: 1em;
 }
 
+.about {
+  margin-left: 20px;
+}
+
 .signin-form {
   width: 20em;
   border: 1px solid #ccc;
@@ -184,12 +188,32 @@ section a:nth-child(1) {
   margin: 35px 10px -10px 0;
 }
 
-.list_options a, .list_options form {
+.list_options * {
   margin-left: 100px;
   display: inline-block;
   border: 0;
   background: none;
   text-decoration: underline;
+}
+
+.filter-options {
+  float: right;
+  margin-top: 30px;
+  width: 500px;
+}
+
+.filter-options .delete {
+  margin: 2px 27px 0 0;
+  width: 53px;
+}
+
+
+#start_date {
+  margin-right: 20px;
+}
+.cal-date {
+  width: 100px;
+  margin-right: 20px;
 }
 
 .list_options input {

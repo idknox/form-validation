@@ -7,7 +7,6 @@
           <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %>
         </div>
         <%= link_to "Delete", task_list_task_path(@task_list, task), method: :delete, class: "delete" %>
-
         </div>
         </li>
   <% end %>

@@ -1,4 +1,14 @@
-<h1><%= @user.name %>'s Tasks</h1>
+<div><h1><%= @user.name %>'s Tasks</h1>
+
+  <div class="filter-options">
+    <%= form_tag user_tasks_path(@user.id), method: :get %>
+    <%= label :start_date, "Start Date:" %>
+    <%= text_field :date, :start, class: "cal-date" %>
+    <%= label :end_date, "End Date:" %>
+    <%= text_field :date, :end, class: "cal-date" %>
+    <%= submit_tag "Filter", class: "delete" %>
+  </div>
+</div>
 <ul>
   <% @tasks.to_a.each do |task| %>
     <li>
@@ -6,6 +16,7 @@
         <div class="task_name">
           <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %>
         </div>
+          <%= link_to "Delete", user_task_path(@user.id, task), method: :delete, class: "delete" %>
       </div>
     </li>
   <% end %>
