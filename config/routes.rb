@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get "/signin" => "sessions#new", as: :signin
   get "/signout" => "sessions#destroy", as: :signout
   post "/signin" => "sessions#create"
-  get "/search" => "tasks#search"
 
   resources :task_lists do
     resources :tasks
@@ -15,4 +14,5 @@ Rails.application.routes.draw do
   end
 
   resource :about, :only => :show
+  resource :search, :only => :show
 end

@@ -139,7 +139,7 @@ feature 'Tasks' do
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
-    fill_in "q", :with => "gSchool"
+    fill_in "search", :with => "gSchool"
     click_on "Search Tasks"
     expect(page).to have_content "Event with gSchool", "Found Tasks"
     expect(page).to_not have_content "Event with Turing", "My Lists"

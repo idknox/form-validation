@@ -1,8 +1,8 @@
 <h1 class="task_list">My Lists</h1>
 <%= link_to "+ Add Task List", new_task_list_path, class: "add" %>
 <%= link_to "View Tasks", user_tasks_path(session[:user_id]), class: "add" %>
-<%= form_tag "/search", method: :get, class: "search" do %>
-  <%= text_field_tag :q %>
+<%= form_tag search_path, method: :get, class: "search" do %>
+  <%= text_field_tag :search %>
   <%= submit_tag "Search Tasks" %>
 <% end %>
 <% if flash[:notice] %>
