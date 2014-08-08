@@ -20,15 +20,14 @@ class Task < ActiveRecord::Base
     end
   end
 
-  def self.filtered_tasks(params)
-    start_date = Date.parse(params[:date][:start])
-    end_date = Date.parse(params[:date][:end])
-    where(
-      "date >= :start_date AND date <= :end_date AND user_id = :user_id",
-      start_date: start_date,
-      end_date: end_date,
-      user_id: params[:user_id]
-    )
+  def self.get_filtered_tasks(params)
+      start_date = Date.parse(params[:date][:start])
+      end_date = Date.parse(params[:date][:end])
+      where(
+        "date >= :start_date AND date <= :end_date AND user_id = :user_id",
+        start_date: start_date,
+        end_date: end_date,
+        user_id: params[:user_id]
+      )
   end
-
-end
+  end

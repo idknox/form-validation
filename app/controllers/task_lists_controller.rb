@@ -1,7 +1,5 @@
 class TaskListsController < ApplicationController
 
-  before_action :require_login
-
   def index
     @task_lists = get_task_list
     @user = User.find(session[:user_id])
@@ -56,12 +54,6 @@ class TaskListsController < ApplicationController
   end
 
   private
-
-  def require_login
-    unless session[:user_id]
-      redirect_to root_path
-    end
-  end
 
   def get_task_list
     User.find(session[:user_id]).task_lists.order(:name).to_a.map do |tl|
