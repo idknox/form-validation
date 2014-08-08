@@ -21,8 +21,4 @@ class SessionsController < ApplicationController
     session.destroy
     redirect_to signin_path
   end
-
-  def about
-    render :about
-  end
 end
