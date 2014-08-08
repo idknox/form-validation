@@ -12,7 +12,7 @@ feature 'Task lists' do
 
     click_on "Add Task List"
     fill_in "Name", :with => "Whatever"
-    click_on "Create Task List"
+    click_on "Create Task list"
   end
 
   scenario "user can add tasks" do
@@ -22,7 +22,7 @@ feature 'Task lists' do
 
   scenario "doesn't allow task with blank name to be created" do
     click_on "Add Task List"
-    click_on "Create Task List"
+    click_on "Create Task list"
 
     expect(page).to have_content "Your task list could not be created"
     expect(page).to have_content "Add a task list"
@@ -31,12 +31,12 @@ feature 'Task lists' do
   scenario "user can edit task_list" do
     click_link "Edit"
     fill_in "Name", :with => ""
-    click_on "Update Task List"
+    click_on "Update Task list"
 
     expect(page).to have_content "Your task list could not be created", "New name"
 
     fill_in "Name", :with => "New name"
-    click_on "Update Task List"
+    click_on "Update Task list"
 
     expect(page).to have_content "Your task list was successfully updated", "New name"
   end
@@ -50,7 +50,7 @@ feature 'Task lists' do
 
     click_on "Add Task List"
     fill_in "Name", :with => "Stuff"
-    click_on "Create Task List"
+    click_on "Create Task list"
 
     click_on "Whatever"
     expect(page).to have_content "Whatever", "Do things", "03-06-2015"

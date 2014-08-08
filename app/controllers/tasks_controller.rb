@@ -3,8 +3,6 @@ class TasksController < ApplicationController
   def index
     @user = User.find(session[:user_id])
     @tasks = get_filtered_tasks(params)
-    p "*" * 80
-    p @tasks
   end
 
   def new
@@ -54,7 +52,7 @@ class TasksController < ApplicationController
   private
 
   def get_filtered_tasks(params)
-    if params[:date][:start]
+    if params[:date]
       Task.filtered_tasks(params)
     else
       Task.where(:user_id => session[:user_id])

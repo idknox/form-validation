@@ -1,0 +1,20 @@
+<%= form_for @task_list, html: {class: "add_task"} do |f| %>
+  <% f.object.errors.each do |att, msg| %>
+    <div class="errors">
+      <%= msg %>
+    </div>
+  <% end %>
+  <ul class="form_list">
+    <li>
+      <%= f.label :name %>
+    </li>
+    <li>
+      <%= f.text_field :name, autofocus: true, value: @task_list.name %>
+    </li>
+    <li>
+      <div>
+        <%= f.submit class: "button" %>
+      </div>
+    </li>
+  </ul>
+<% end %>

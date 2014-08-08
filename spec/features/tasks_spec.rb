@@ -12,7 +12,7 @@ feature 'Tasks' do
 
     click_on "Add Task List"
     fill_in "Name", :with => "Whatever"
-    click_on "Create Task List"
+    click_on "Create Task list"
   end
 
   scenario "User can add and delete tasks" do
@@ -97,7 +97,7 @@ feature 'Tasks' do
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
-    expect(page).to have_content "Do things 2 (300 days) - Some User Delete Do things (666 days) - Some User"
+    expect(page).to have_content "Do things 2 (299 days) - Some User Delete Do things (665 days) - Some User"
   end
 
   scenario "user can view their assigned tasks" do
