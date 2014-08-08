@@ -10,14 +10,14 @@
     <li>
       <%= f.label :description %>
     </li>
-    <li>
+    <li class="text">
       <%= f.text_field :description, autofocus: true %>
     </li>
     <li>
-      <%= f.label :due_date %>
+      <%= f.label :date %>
     </li>
-    <li class="dropdown">
-      <%= f.date_select :date, :start_year => Date.current.year %>
+    <li>
+      <%= f.text_field :date, class: "cal_date" %>
     </li>
     <li>
       <%= f.label :user %>

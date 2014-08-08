@@ -1,6 +1,7 @@
 /*
 *= require_tree .
 *= require_self
+*= require jquery-ui
 */
 
 .container {
@@ -211,8 +212,12 @@ section a:nth-child(1) {
   padding: 0;
 }
 
-.form_list input[type='text'] {
+.text input {
   width: 300px;
+}
+
+#task_date {
+  width: 90px;
 }
 
 .button {

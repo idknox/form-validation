@@ -18,7 +18,7 @@ class TasksController < ApplicationController
       :task_list_id => params[:task_list_id],
       :assigned_to => params[:task][:assigned_to],
       :completed => false,
-      :date => create_date(params[:task])
+      :date => Date.parse(params[:task][:date])
     )
 
     if @task.save

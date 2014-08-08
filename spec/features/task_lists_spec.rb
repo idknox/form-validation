@@ -44,9 +44,7 @@ feature 'Task lists' do
   scenario "User can add and delete tasks" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
-    page.select "March", :from => "task_date_2i"
-    page.select "6", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
@@ -61,9 +59,7 @@ feature 'Task lists' do
   scenario "User can view Task List page" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
-    page.select "March", :from => "task_date_2i"
-    page.select "6", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
@@ -79,9 +75,7 @@ feature 'Task lists' do
   scenario "User can complete tasks" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
-    page.select "March", :from => "task_date_2i"
-    page.select "6", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
@@ -93,9 +87,7 @@ feature 'Task lists' do
   scenario "User can view completed tasks" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
-    page.select "March", :from => "task_date_2i"
-    page.select "6", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
@@ -107,21 +99,17 @@ feature 'Task lists' do
   scenario "tasks display sorted by date" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
-    page.select "March", :from => "task_date_2i"
-    page.select "6", :from => "task_date_3i"
-    page.select "2016", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2016"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     click_link "Add Task"
     fill_in "Description", :with => "Do things 2"
-    page.select "March", :from => "task_date_2i"
-    page.select "6", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
-    expect(page).to have_content "Do things 2 (211 days) - Some User Delete Do things (577 days) - Some User"
+    expect(page).to have_content "Do things 2 (300 days) - Some User Delete Do things (666 days) - Some User"
   end
 
   scenario "user can delete task lists" do
@@ -145,9 +133,7 @@ feature 'Task lists' do
   scenario "assign tasks to user" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
-    page.select "August", :from => "task_date_2i"
-    page.select "5", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
@@ -157,6 +143,7 @@ feature 'Task lists' do
   scenario "user cannot create blank task" do
     click_link "Add Task"
     page.select "Some User", :from => "task_assigned_to"
+    fill_in "task_date", :with => "03/06/2015"
     click_button "Create Task"
 
     expect(page).to have_content "Add a task", "Your task could not be created"
@@ -165,9 +152,7 @@ feature 'Task lists' do
   scenario "user cannot create a past task" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
-    page.select "August", :from => "task_date_2i"
-    page.select "5", :from => "task_date_3i"
-    page.select "2014", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2014"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
@@ -178,17 +163,13 @@ feature 'Task lists' do
   scenario "user can view their assigned tasks" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
-    page.select "August", :from => "task_date_2i"
-    page.select "5", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     click_link "Add Task"
     fill_in "Description", :with => "Do things2"
-    page.select "August", :from => "task_date_2i"
-    page.select "5", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
@@ -199,9 +180,7 @@ feature 'Task lists' do
   scenario "Task must have user assigned" do
     click_link "Add Task"
     fill_in "Description", :with => "Do things"
-    page.select "August", :from => "task_date_2i"
-    page.select "5", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     click_button "Create Task"
 
     expect(page).to have_content "Task must have user assigned", "Whatever"
@@ -210,17 +189,13 @@ feature 'Task lists' do
   scenario "user can search for tasks" do
     click_link "Add Task"
     fill_in "Description", :with => "Event with gSchool on Monday"
-    page.select "August", :from => "task_date_2i"
-    page.select "5", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
     click_link "Add Task"
     fill_in "Description", :with => "Event with Turing"
-    page.select "August", :from => "task_date_2i"
-    page.select "5", :from => "task_date_3i"
-    page.select "2015", :from => "task_date_1i"
+    fill_in "task_date", :with => "03/06/2015"
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
