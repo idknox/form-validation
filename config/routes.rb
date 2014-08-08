@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root "task_lists#index"
   get "/signin" => "sessions#new", as: :signin
   get "/signout" => "sessions#destroy", as: :signout
-  get "/about" => "about#show", as: :about
   post "/signin" => "sessions#create"
   get "/search" => "tasks#search"
 

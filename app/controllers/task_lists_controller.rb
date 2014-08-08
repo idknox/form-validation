@@ -47,16 +47,6 @@ class TaskListsController < ApplicationController
     )
   end
 
-  def show_completed
-    @title = " - Completed"
-    @task_list = TaskList.find(params[:id])
-    @tasks = Task.where(
-      :task_list_id => params[:id],
-      :completed =>  true
-    )
-    render :index
-  end
-
   def destroy
     task_list = TaskList.find(params[:id])
     task_list.destroy
