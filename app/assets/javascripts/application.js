@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require_tree .
 //= require jquery-ui
+//= require jMagnify
 
 $(function () {
   $('.cal-date').datepicker({ dateFormat: "yy-mm-dd"});
@@ -33,13 +34,21 @@ $(document).ready(function () {
     $('.flash').slideUp()
   })
 
-  $('.task').each( function () {
+// Change task colors
+
+  $('.task').each(function () {
     if ($(this).find('.time').text() == 0) {
       $(this).css('background-color', '#FFC683')
     }
     else if ($(this).find('.time').text() < 0) {
       $(this).css('background-color', '#FF9189')
     }
+  });
+
+//  Unheap plugin
+
+  $().ready(function() {
+    $('.task_list').jMagnify();
   });
 
 });
