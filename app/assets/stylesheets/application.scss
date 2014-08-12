@@ -2,6 +2,7 @@
 *= require_tree .
 *= require_self
 *= require jquery-ui
+*= require font-awesome
 */
 
 .container {
@@ -207,7 +208,6 @@ section a:nth-child(1) {
   width: 53px;
 }
 
-
 #start_date {
   margin-right: 20px;
 }
@@ -259,4 +259,8 @@ section a:nth-child(1) {
   font-size: 50px;
   color: red;
 
+}
+
+.hidden {
+  display: none;
 }

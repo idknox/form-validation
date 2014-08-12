@@ -9,18 +9,24 @@
   <div class="flash">
     <%= flash[:notice] %>
   </div>
+  <% else %>
+  <div class="flash">ijijeifjenfeonfjenfjkenfkjenfkjenfek</div>
 <% end %>
 <% @task_lists.each do |task_list| %>
   <section>
     <h1><%= link_to task_list[:task_list].name, task_list_path(task_list[:task_list].id), class: "task_list" %></h1>
-
-    <div class="list_options">
+    <span class="open">
+    <span class="fa fa-caret-right"></span>
+    <span class="fa fa-caret-down"></span>
+    </span>
+      <div class="list_options">
       <%= link_to "Completed", task_list_completed_tasks_path(task_list[:task_list].id) %>
       <%= link_to "Delete", task_list_path(task_list[:task_list]), method: :delete %>
 
       <%= link_to "Edit", edit_task_list_path(task_list[:task_list].id) %>
       <%= link_to "Add Task", new_task_list_task_path(task_list[:task_list].id) %>
     </div>
+    <div class="tasks">
     <ul>
       <% if task_list[:tasks].any? %>
         <% task_list[:tasks].each do |task| %>
@@ -46,5 +52,6 @@
         </li>
       <% end %>
     </ul>
+      </div>
   </section>
 <% end %>
