@@ -97,7 +97,7 @@ feature 'Tasks' do
     page.select "Some User", :from => "task_assigned_to"
     click_button "Create Task"
 
-    expect(page).to have_content "Do things 2 (299 days) - Some User Delete Do things (665 days) - Some User"
+    expect(page).to have_content "Do things 2 (295 days) - Some User Delete Do things (661 days) - Some User"
   end
 
   scenario "user can view their assigned tasks" do
