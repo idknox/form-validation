@@ -10,9 +10,6 @@
     <%= flash[:notice] %>
     <span class="fa fa-times"></span>
   </div>
-<% else %>
-  <div class="flash">ijijeifjenfeonfjenfjkenfkjenfkjenfek<span class="fa fa-times"></span>
-  </div>
 <% end %>
 <% @task_lists.each do |task_list| %>
   <section>
@@ -36,7 +33,9 @@
             <li>
               <div class="task">
                 <div class="task_name">
-                  <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %> -
+                  <%= task.description + " (" %>
+                  <span class="time"><%= (task.date.mjd - Date.today.mjd).to_s %></span>
+                  <%= " days )" %> -
                   <b><%= task.assigned_to %></b>
                 </div>
                 <%= link_to "Delete", task_list_task_path(task_list[:task_list].id, task.id), method: :delete, class: "delete" %>

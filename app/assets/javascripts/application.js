@@ -15,8 +15,8 @@ $(document).ready(function () {
   $('.fa-caret-down').hide();
   $('.open').click(function () {
     $(this).siblings('.tasks').slideToggle();
-    $(this).find('.fa-caret-down').show();
-    $(this).find('.fa-caret-right').hide();
+    $(this).find('.fa-caret-down').toggle();
+    $(this).find('.fa-caret-right').toggle();
     $('.tasks').not($(this).siblings('.tasks')).slideUp();
   });
 
@@ -32,6 +32,16 @@ $(document).ready(function () {
   $('.fa-times').click(function () {
     $('.flash').slideUp()
   })
+
+  $('.task').each( function () {
+    if ($(this).find('.time').text() == 0) {
+      $(this).css('background-color', '#FFC683')
+    }
+    else if ($(this).find('.time').text() < 0) {
+      $(this).css('background-color', '#FF9189')
+    }
+  });
+
 });
 
 
