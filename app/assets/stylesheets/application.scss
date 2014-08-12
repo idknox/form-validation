@@ -264,3 +264,10 @@ section a:nth-child(1) {
 .hidden {
   display: none;
 }
+
+.fa-times {
+  float: right;
+  position: relative;
+  top: -15px;
+  left: 10px;
+}

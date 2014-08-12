@@ -8,9 +8,11 @@
 <% if flash[:notice] %>
   <div class="flash">
     <%= flash[:notice] %>
+    <span class="fa fa-times"></span>
   </div>
-  <% else %>
-  <div class="flash">ijijeifjenfeonfjenfjkenfkjenfkjenfek</div>
+<% else %>
+  <div class="flash">ijijeifjenfeonfjenfjkenfkjenfkjenfek<span class="fa fa-times"></span>
+  </div>
 <% end %>
 <% @task_lists.each do |task_list| %>
   <section>
@@ -19,7 +21,8 @@
     <span class="fa fa-caret-right"></span>
     <span class="fa fa-caret-down"></span>
     </span>
-      <div class="list_options">
+
+    <div class="list_options">
       <%= link_to "Completed", task_list_completed_tasks_path(task_list[:task_list].id) %>
       <%= link_to "Delete", task_list_path(task_list[:task_list]), method: :delete %>
 
@@ -27,31 +30,31 @@
       <%= link_to "Add Task", new_task_list_task_path(task_list[:task_list].id) %>
     </div>
     <div class="tasks">
-    <ul>
-      <% if task_list[:tasks].any? %>
-        <% task_list[:tasks].each do |task| %>
-          <li>
-            <div class="task">
-              <div class="task_name">
-                <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %> -
-                <b><%= task.assigned_to %></b>
+      <ul>
+        <% if task_list[:tasks].any? %>
+          <% task_list[:tasks].each do |task| %>
+            <li>
+              <div class="task">
+                <div class="task_name">
+                  <%= task.description + " (" + (task.date.mjd - Date.today.mjd).to_s + " days)" %> -
+                  <b><%= task.assigned_to %></b>
+                </div>
+                <%= link_to "Delete", task_list_task_path(task_list[:task_list].id, task.id), method: :delete, class: "delete" %>
+                <%= form_for task, url: task_list_completed_tasks_path(task_list[:task_list].id), method: :post do |f| %>
+                  <%= f.hidden_field :id %>
+                  <%= f.submit "Complete", class: "delete" %>
+                <% end %>
               </div>
-              <%= link_to "Delete", task_list_task_path(task_list[:task_list].id, task.id), method: :delete, class: "delete" %>
-              <%= form_for task, url: task_list_completed_tasks_path(task_list[:task_list].id), method: :post do |f| %>
-                <%= f.hidden_field :id %>
-                <%= f.submit "Complete", class: "delete" %>
-              <% end %>
+            </li>
+          <% end %>
+        <% else %>
+          <li>
+            <div class="task_blank">
+              <span>Nothing here to see!</span>
             </div>
           </li>
         <% end %>
-      <% else %>
-        <li>
-          <div class="task_blank">
-            <span>Nothing here to see!</span>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-      </div>
+      </ul>
+    </div>
   </section>
 <% end %>

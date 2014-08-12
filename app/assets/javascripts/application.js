@@ -28,6 +28,10 @@ $(document).ready(function () {
 
   window.setTimeout(stopFlash, 5000)
 
+
+  $('.fa-times').click(function () {
+    $('.flash').slideUp()
+  })
 });
 
 
