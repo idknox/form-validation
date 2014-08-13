@@ -27,12 +27,12 @@ $(document).ready(function () {
     $('.flash').slideUp()
   };
 
-  window.setTimeout(stopFlash, 5000)
+  window.setTimeout(stopFlash, 5000);
 
 
   $('.fa-times').click(function () {
     $('.flash').slideUp()
-  })
+  });
 
 // Change task colors
 
@@ -47,8 +47,52 @@ $(document).ready(function () {
 
 //  Unheap plugin
 
-  $().ready(function() {
+  $().ready(function () {
     $('.task_list').jMagnify();
+  });
+
+
+// Form Validation
+  
+  $('.submit').attr('disabled', 'disabled');
+
+  $('.form_list input').on({
+    change: function () {
+      $('.submit').removeAttr('disabled');
+      if ($(this).val().length < 1) {
+        $(this).addClass('invalid');
+      }
+    },
+    keyup: function () {
+      $('.submit').removeAttr('disabled');
+    }
+  });
+
+  $('.add_task').on('submit', function (e) {
+    var valid = true;
+
+    $('.form_list input').each(function () {
+      if ($(this).val().length < 1) {
+        valid = false;
+        console.log(valid);
+      }
+    });
+
+    if (valid == false) {
+      e.preventDefault();
+      $('.errors').prepend('All fields must be filled');
+    }
+  });
+
+  $('.submit').on('click', function () {
+    $(this).attr('disabled', 'disabled');
+  });
+
+  $('.clear').on('click', function () {
+    $('.add_task input').each(function () {
+      $(this).val() = '';
+      $('.submit').attr('disabled', 'disabled');
+    });
   });
 
 });
