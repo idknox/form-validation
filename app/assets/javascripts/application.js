@@ -54,29 +54,40 @@ $(document).ready(function () {
 
 // Form Validation
 
+  var form = $('.add_task');
+  var errors = $('.errors');
+  var inputs = $(".form_list :input");
+
+  var isValid = function (input) {
+    return (input.val() != '')
+  };
+
   $('.submit').attr('disabled', 'disabled');
 
-  $('.form_list input').on({
-    blur: function () {
-      $('.submit').removeAttr('disabled');
-      if ($(this).val().length < 1) {
-        $(this).addClass('invalid');
-      }
-    },
-    keyup: function () {
-      $('.submit').removeAttr('disabled');
+  inputs.on('blur keyup change', function () {
+    $('.submit').removeAttr('disabled');
+    if (isValid($(this))) {
+      $(this).removeClass('invalid');
+    } else {
+      $(this).addClass('invalid');
+    }
+  });
+
+  $('.task_list_name').on('blur', function () {
+    if ($(this).val().length < 21 && $(this.val().length > 0))  {
+      $(this).removeClass('invalid');
+    } else {
+      $(this).addClass('invalid');
     }
   });
 
 //  --- PRINT ERRORS __
-  form = $('.add_task');
-  errors = $('.errors');
 
   form.submit(function (e) {
     var valid = true;
 
-    $('.form_list input').each(function (_, item) {
-      if ($(item).val().length < 1) {
+    inputs.each(function () {
+      if ($(this).hasClass('invalid')) {
         valid = false;
       }
     });
@@ -107,6 +118,7 @@ $(document).ready(function () {
     });
   });
 
-});
+})
+;
 
 
