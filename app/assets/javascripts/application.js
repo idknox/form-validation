@@ -53,11 +53,11 @@ $(document).ready(function () {
 
 
 // Form Validation
-  
+
   $('.submit').attr('disabled', 'disabled');
 
   $('.form_list input').on({
-    change: function () {
+    blur: function () {
       $('.submit').removeAttr('disabled');
       if ($(this).val().length < 1) {
         $(this).addClass('invalid');
@@ -68,29 +68,41 @@ $(document).ready(function () {
     }
   });
 
-  $('.add_task').on('submit', function (e) {
+//  --- PRINT ERRORS __
+  form = $('.add_task');
+  errors = $('.errors');
+
+  form.submit(function (e) {
     var valid = true;
 
-    $('.form_list input').each(function () {
-      if ($(this).val().length < 1) {
+    $('.form_list input').each(function (_, item) {
+      if ($(item).val().length < 1) {
         valid = false;
-        console.log(valid);
       }
     });
 
-    if (valid == false) {
+    if (valid) {
+      $('.submit').attr('disabled', 'disabled')
+    }
+    else {
       e.preventDefault();
-      $('.errors').prepend('All fields must be filled');
+      errors.empty();
+      errors.prepend('All fields must be filled');
     }
   });
 
-  $('.submit').on('click', function () {
-    $(this).attr('disabled', 'disabled');
-  });
+//  --- DISABLE BUTTON ON SUBMIT ---
+
+//  $('.submit').on('click', function () {
+//    $(this).attr('disabled', 'disabled');
+//    return true;
+//  });
+
+//  --- CLEAR FORM ---
 
   $('.clear').on('click', function () {
     $('.add_task input').each(function () {
-      $(this).val() = '';
+//      $(this).val() = '';
       $('.submit').attr('disabled', 'disabled');
     });
   });

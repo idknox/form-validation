@@ -4,13 +4,13 @@ class Task < ActiveRecord::Base
   belongs_to :task_list
   belongs_to :user
 
-  validates :description, presence: {
-    :message => "Your task could not be created"
-  }
-
-  validates :assigned_to, presence: {
-    :message => "Task must have user assigned"
-  }
+  # validates :description, presence: {
+  #   :message => "Your task could not be created"
+  # }
+  #
+  # validates :assigned_to, presence: {
+  #   :message => "Task must have user assigned"
+  # }
 
   validate :date_cannot_be_past
 
