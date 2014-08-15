@@ -117,15 +117,21 @@ $(document).ready(function () {
   }
 
   $('.filter').on('keyup', function () {
-    filter = $(this).val();
-    $('.task').hide();
-    $('.task').addClass('hidden');
-    $('.task_description:contains(' + filter + ')').parents('.task').show();
-    $('.task_description:contains(' + filter + ')').parents('.task').removeClass('hidden');
+    var filter = $(this).val();
+    var tasks = $('.task');
+    var results = $('.task_description:contains(' + filter + ')');
+
+    tasks.hide();
+    tasks.addClass('hidden');
+
+    results.parents('.task').show();
+    results.parents('.task').removeClass('hidden');
 
     $('section').each(function () {
       if ($(this).find('.hidden').length == $(this).find('.task').length) {
         $(this).hide();
+      } else {
+        $(this).show();
       }
     });
   });
