@@ -11,7 +11,8 @@ $(function () {
 
 $(document).ready(function () {
 
-//  Accordion
+//  ACCORDION
+
 //  $('.tasks').hide();
 //  $('.fa-caret-down').hide();
 //  $('.open').click(function () {
@@ -21,7 +22,7 @@ $(document).ready(function () {
 //    $('.tasks').not($(this).siblings('.tasks')).slideUp();
 //  });
 
-//  Hide Flash
+// --- HIDE FLASH ---
 
   var stopFlash = function () {
     $('.flash').slideUp()
@@ -34,7 +35,7 @@ $(document).ready(function () {
     $('.flash').slideUp()
   });
 
-// Change task colors
+// --- CHANGE TASK COLORS ---
 
   $('.task').each(function () {
     if ($(this).find('.time').text() == 0) {
@@ -45,14 +46,14 @@ $(document).ready(function () {
     }
   });
 
-//  Unheap plugin
+// --- UNHEAP PLUGIN ---
 
   $().ready(function () {
     $('.task_list').jMagnify();
   });
 
 
-// Form Validation
+// --- FORM VALIDATION --
 
   var form = $('.add_task');
   var errors = $('.errors');
@@ -112,6 +113,12 @@ $(document).ready(function () {
 
 //  --- FILTER ---
 
+  // Custom case-insensitive :contains
+  jQuery.expr[':'].containsCaseInsensitive = function(a, i, m) {
+    return jQuery(a).text().toUpperCase()
+      .indexOf(m[3].toUpperCase()) >= 0;
+  };
+
   if ($('.filter').val() == '') {
     $('.task').removeClass('hidden');
   }
@@ -119,7 +126,7 @@ $(document).ready(function () {
   $('.filter').on('keyup', function () {
     var filter = $(this).val();
     var tasks = $('.task');
-    var results = $('.task_description:contains(' + filter + ')');
+    var results = $('.task_description:containsCaseInsensitive(' + filter + ')');
 
     tasks.hide();
     tasks.addClass('hidden');
