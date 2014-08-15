@@ -136,6 +136,13 @@ $(document).ready(function () {
     });
   });
 
+//  --- ClEAR FILTER ---
+
+  $('.clear_filter').on('click', function () {
+    $('.filter').empty();
+    $('.hidden').removeClass('hidden');
+  });
+
 });
 
 

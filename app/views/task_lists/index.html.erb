@@ -6,6 +6,7 @@
   <%= submit_tag "Search Tasks" %>
 <% end %>
 <%= text_field_tag "filter", nil, placeholder: "Filter tasks", class: "filter" %>
+<%= link_to "Clear", url: "javascript:void(0)", class: "clear_filter" %>
 <% if flash[:notice] %>
   <div class="flash">
     <%= flash[:notice] %>
