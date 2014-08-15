@@ -12,14 +12,14 @@ $(function () {
 $(document).ready(function () {
 
 //  Accordion
-  $('.tasks').hide();
-  $('.fa-caret-down').hide();
-  $('.open').click(function () {
-    $(this).siblings('.tasks').slideToggle();
-    $(this).find('.fa-caret-down').toggle();
-    $(this).find('.fa-caret-right').toggle();
-    $('.tasks').not($(this).siblings('.tasks')).slideUp();
-  });
+//  $('.tasks').hide();
+//  $('.fa-caret-down').hide();
+//  $('.open').click(function () {
+//    $(this).siblings('.tasks').slideToggle();
+//    $(this).find('.fa-caret-down').toggle();
+//    $(this).find('.fa-caret-right').toggle();
+//    $('.tasks').not($(this).siblings('.tasks')).slideUp();
+//  });
 
 //  Hide Flash
 
@@ -74,7 +74,7 @@ $(document).ready(function () {
   });
 
   $('.task_list_name').on('blur', function () {
-    if ($(this).val().length < 21 && $(this.val().length > 0))  {
+    if ($(this).val().length < 21 && $(this.val().length > 0)) {
       $(this).removeClass('invalid');
     } else {
       $(this).addClass('invalid');
@@ -102,23 +102,34 @@ $(document).ready(function () {
     }
   });
 
-//  --- DISABLE BUTTON ON SUBMIT ---
-
-//  $('.submit').on('click', function () {
-//    $(this).attr('disabled', 'disabled');
-//    return true;
-//  });
-
-//  --- CLEAR FORM ---
 
   $('.clear').on('click', function () {
     $('.add_task input').each(function () {
-//      $(this).val() = '';
-      $('.submit').attr('disabled', 'disabled');
+      $(this).val() = '';
+    });
+    $('.submit').attr('disabled', 'disabled');
+  });
+
+//  --- FILTER ---
+
+  if ($('.filter').val() == '') {
+    $('.task').removeClass('hidden');
+  }
+
+  $('.filter').on('keyup', function () {
+    filter = $(this).val();
+    $('.task').hide();
+    $('.task').addClass('hidden');
+    $('.task_description:contains(' + filter + ')').parents('.task').show();
+    $('.task_description:contains(' + filter + ')').parents('.task').removeClass('hidden');
+
+    $('section').each(function () {
+      if ($(this).find('.hidden').length == $(this).find('.task').length) {
+        $(this).hide();
+      }
     });
   });
 
-})
-;
+});
 
 

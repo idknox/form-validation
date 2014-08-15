@@ -5,6 +5,7 @@
   <%= text_field_tag :search %>
   <%= submit_tag "Search Tasks" %>
 <% end %>
+<%= text_field_tag "filter", nil, placeholder: "Filter tasks", class: "filter" %>
 <% if flash[:notice] %>
   <div class="flash">
     <%= flash[:notice] %>
@@ -33,7 +34,7 @@
             <li>
               <div class="task">
                 <div class="task_name">
-                  <%= task.description + " (" %>
+                  <span class="task_description"><%= task.description + " (" %></span>
                   <span class="time"><%= (task.date.mjd - Date.today.mjd).to_s %></span>
                   <%= " days )" %> -
                   <b><%= task.assigned_to %></b>

@@ -105,6 +105,9 @@ main {
   margin-left: 20px;
 }
 
+.search input {
+  width: 120px;
+}
 .task_list {
   display: inline-block;
   text-decoration: none;
@@ -259,10 +262,6 @@ section a:nth-child(1) {
   font-size: 50px;
   color: red;
 
-}
-
-.hidden {
-  display: none;
 }
 
 .fa-times {
